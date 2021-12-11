@@ -1,8 +1,9 @@
+from contextlib import redirect_stdout
 import Character_Values
 
-def message_list_generator():
+def message_list_generator(file_name):
     character_list = []
-    file = open('file.txt', 'r')
+    file = open(file_name, 'r')
     end_of_file = False
 
     while not end_of_file: 
@@ -56,12 +57,19 @@ def decryption(Encrypted_Character_List, key, Character_List):
 
 
 if __name__ == "__main__":
-    message = message_list_generator()
+    message_char_list = message_list_generator('file.txt')
     Character_List = Character_Values.get_chars()
     #print(message)
-    Encrypted_Character_List = encryption(message, 3, Character_List)
+    Encrypted_Character_List = encryption(message_char_list, 3, Character_List)
     #for i in range(len(Encrypted_Character_List)):
     #print(Encrypted_Character_List)
     Decrypted_Character_List = decryption(Encrypted_Character_List, 3, Character_List)
-    for i in range(len(Decrypted_Character_List)):
-        print(Decrypted_Character_List[i], end='')
+    with open ("encrypted.txt", 'w') as f:
+        with redirect_stdout(f):
+            for i in range(len(Encrypted_Character_List)):
+                print(Encrypted_Character_List[i], end= '')
+    with open ("output.txt", 'w') as f:
+        with redirect_stdout(f):
+            for i in range(len(Decrypted_Character_List)):
+                print(Decrypted_Character_List[i], end='')
+        
