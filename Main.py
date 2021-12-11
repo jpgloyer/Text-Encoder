@@ -58,19 +58,20 @@ def decryption(Encrypted_Character_List, key, Character_List):
 
 
 if __name__ == "__main__":
-    message_char_list = message_list_generator('file.txt')
+    #message_char_list = message_list_generator('file.txt')
     Character_List = Character_Values.get_chars()
+    print(Character_List)
     #print(message)
-    Encrypted_Character_List = encryption(message_char_list, 72, Character_List)
+    #Encrypted_Character_List = encryption(message_char_list, 72, Character_List)
     #for i in range(len(Encrypted_Character_List)):
     #print(Encrypted_Character_List)
-    Decrypted_Character_List = decryption(Encrypted_Character_List, 72, Character_List)
-    with open ("encrypted.txt", 'w') as f:
-        with redirect_stdout(f):
-            for i in range(len(Encrypted_Character_List)):
-                print(Encrypted_Character_List[i], end= '')
-    with open ("output.txt", 'w') as f:
-        with redirect_stdout(f):
-            for i in range(len(Decrypted_Character_List)):
-                print(Decrypted_Character_List[i], end='')
+    # Decrypted_Character_List = decryption(Encrypted_Character_List, 72, Character_List)
+    # with open ("encrypted.txt", 'w') as f:
+    #     with redirect_stdout(f):
+    #         for i in range(len(Encrypted_Character_List)):
+    #             print(Encrypted_Character_List[i], end= '')
+    # with open ("output.txt", 'w') as f:
+    #     with redirect_stdout(f):
+    #         for i in range(len(Decrypted_Character_List)):
+    #             print(Decrypted_Character_List[i], end='')
         

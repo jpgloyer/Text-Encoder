@@ -1,0 +1,6 @@
+Emma, I dare you to try to crack this. 
+
+It's absolutely possible, if you know what you're looking for. 
+
+It isn't a simple cipher. Each letter's position determines the amount that the letter is shifted. I will give you two unencrypted hints though, 
+but you won't realize they're hints until after you crack the code. 
