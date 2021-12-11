@@ -22,7 +22,7 @@ def get_chars():
     return Full_Character_List
 
 
-def char_input_output_encrypting(input_char, encryption_value, Character_List):
+def char_input_output(input_char, encryption_value, Character_List):
     index = 0
     i = 0
     while i != -1:

@@ -32,7 +32,7 @@ def encryption(Message_Character_List, key, Character_List):
     for i in range(len(Message_Character_List)):
         if Message_Character_List[i]:
             #print(Character_Values.char_input_output_encrypting(Message_Character_List[i], key, Character_List), i, Message_Character_List[i])
-            Encrypted_Character_List.append(Character_Values.char_input_output_encrypting(Message_Character_List[i], key, Character_List))
+            Encrypted_Character_List.append(Character_Values.char_input_output(Message_Character_List[i], key, Character_List))
             key += 1
         if key == 62:
             key = 0
@@ -47,7 +47,7 @@ def decryption(Encrypted_Character_List, key, Character_List):
     Decrypted_Character_List = []
     for i in range(len(Encrypted_Character_List)):
         if Encrypted_Character_List[i]:
-            Decrypted_Character_List.append(Character_Values.char_input_output_encrypting(Encrypted_Character_List[i], key, Character_List))
+            Decrypted_Character_List.append(Character_Values.char_input_output(Encrypted_Character_List[i], key, Character_List))
             key -= 1
         if key == -62:
             key = 0
