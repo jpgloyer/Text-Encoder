@@ -63,4 +63,5 @@ if __name__ == "__main__":
     #for i in range(len(Encrypted_Character_List)):
     print(Encrypted_Character_List)
     Decrypted_Character_List = decryption(Encrypted_Character_List, 3, Character_List)
-    print(Decrypted_Character_List)
+    for i in range(len(Decrypted_Character_List)):
+        print(Decrypted_Character_List[i], end='')

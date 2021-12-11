@@ -32,4 +32,8 @@ def char_input_output_encrypting(input_char, encryption_value, Character_List):
         else:
             i+=1
 
+        if i > 123:
+            i = -1
+            return input_char
+
     return Character_List[index+encryption_value]
