@@ -41,10 +41,11 @@ def encryption(Message_Character_List, key, Character_List):
 
 
 def decryption(Encrypted_Character_List, key, Character_List):
-    if key > 0:
+    if key < 0:
         key = -key
-    if key < -61:
+    if key > 61:
         key = key % 61
+    key = -key
     Decrypted_Character_List = []
     for i in range(len(Encrypted_Character_List)):
         if Encrypted_Character_List[i]:
@@ -60,10 +61,10 @@ if __name__ == "__main__":
     message_char_list = message_list_generator('file.txt')
     Character_List = Character_Values.get_chars()
     #print(message)
-    Encrypted_Character_List = encryption(message_char_list, 3, Character_List)
+    Encrypted_Character_List = encryption(message_char_list, 72, Character_List)
     #for i in range(len(Encrypted_Character_List)):
     #print(Encrypted_Character_List)
-    Decrypted_Character_List = decryption(Encrypted_Character_List, 3, Character_List)
+    Decrypted_Character_List = decryption(Encrypted_Character_List, 72, Character_List)
     with open ("encrypted.txt", 'w') as f:
         with redirect_stdout(f):
             for i in range(len(Encrypted_Character_List)):
