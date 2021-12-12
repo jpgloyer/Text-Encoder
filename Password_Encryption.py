@@ -5,12 +5,15 @@ from Main import message_list_generator
 def get_vals_from_password(Password):
     password_vals = []
     Letter_Nums = ''
+    key = 0
     for i in range(len(Password)):   
         Letter_Nums = str(ord(Password[i]))
-        for i in Letter_Nums:  
-            password_vals.append(int(i))
+        for j in Letter_Nums:  
+            password_vals.append(int(j))
+    for i in password_vals:
+        key += i
 
-    return password_vals
+    return password_vals, key
 
 def encrypt(message, password_values, key, Character_Reference_List):
     encrypted_message = []
@@ -20,7 +23,7 @@ def encrypt(message, password_values, key, Character_Reference_List):
     for i in message:
         encrypted_message.append(i)
     #print(password_values)
-    for k in range(100*key):
+    for k in range(1000+key):
         for i in password_values:
             if i == 0:
                 #alter every character in message
@@ -50,7 +53,7 @@ def decrypt(encrypted_message, password_values, key, Character_Reference_List):
     for i in encrypted_message:
         decrypted_message.append(i)
 
-    for k in range(100*key):
+    for k in range(1000+key):
         for i in password_values:
             if i == 0:
                 for j in range(len(encrypted_message)):
@@ -76,8 +79,12 @@ def main():
     #print(get_vals_from_password("Pierce"))
     #print(decrypt('5tpCoq tF ozAw', get_vals_from_password("Pierce"), 1, Character_Reference_List))
     print()
-    encrypted_message = encrypt(message_list_generator("input.txt"), get_vals_from_password("Pierce"), 2, Character_Reference_List)
-    decrypted_message = decrypt(encrypted_message, get_vals_from_password(input("Password:")), int(input("Key(integer):")), Character_Reference_List)
+    Password_Vals, key = get_vals_from_password("Pierce")
+    encrypted_message = encrypt(message_list_generator("input.txt"), Password_Vals, key, Character_Reference_List)
+
+    
+    Input_Password_Vals, input_key = get_vals_from_password(input("Password:"))
+    decrypted_message = decrypt(encrypted_message, Input_Password_Vals, input_key, Character_Reference_List)
     print()
     for i in decrypted_message:
         print(i, end='')
@@ -87,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    #make key to be variation of sum of ascii values of chars in password
