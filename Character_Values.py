@@ -2,8 +2,12 @@ def get_chars():
     #To be used once at the beginning of every run of the program
     #Simply generates a list of standard characters (numbers, lower and capital case letters)
     #Returns the completed list, doubled
+
+    #Capital Letters
     Character_List1 = [chr(i) for i in range(65,91)]
+    #Lower case letters
     Character_List2 = [chr(i) for i in range(97,123)]
+    #Numbers
     Character_List3 = [chr(i) for i in range(48,58)]
     Full_Character_List = []
     for i in range(len(Character_List3)):
