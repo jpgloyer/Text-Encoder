@@ -117,4 +117,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    #make key to be variation of sum of ascii values of chars in password
