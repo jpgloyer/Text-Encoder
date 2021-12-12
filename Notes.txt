@@ -1,0 +1,5 @@
+Password encryption:
+Convert password characters to numbers
+Modulo positions of characters in text file by the numbers from the password characters
+at each of those positions, alter the character by a varying amount
+increase each password/number/modulo amount and repeat many times

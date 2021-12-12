@@ -22,7 +22,9 @@ def get_chars():
     return Full_Character_List
 
 
-def char_input_output(input_char, encryption_value, Character_List):
+def char_input_output(input_char, key, Character_List):
+    #Takes in one input character that is searched for in the character list
+    #Returns the position of the character in the list, shifted by the amount inputted as encryption_value
     index = 0
     i = 0
     while i != -1:
@@ -36,4 +38,4 @@ def char_input_output(input_char, encryption_value, Character_List):
             i = -1
             return input_char
 
-    return Character_List[index+encryption_value]
+    return Character_List[index+key]
