@@ -31,6 +31,9 @@ def char_input_output(input_char, key, Character_List):
     #Returns the position of the character in the list, shifted by the amount inputted as encryption_value
     index = 0
     i = 0
+    length = len(Character_List) - 1
+    #print(length)
+    
     while i != -1:
         if input_char == Character_List[i]:
             index = i
@@ -38,7 +41,7 @@ def char_input_output(input_char, key, Character_List):
         else:
             i+=1
 
-        if i > 123:
+        if i > length:
             i = -1
             return input_char
 

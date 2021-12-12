@@ -2,7 +2,7 @@ import Character_Values
 from Main import message_list_generator
 
 
-def get_vals_from_password(Password):
+def get_vals_from_password(Password, max_key):
     password_vals = []
     Letter_Nums = ''
     key = 0
@@ -10,8 +10,19 @@ def get_vals_from_password(Password):
         Letter_Nums = str(ord(Password[i]))
         for j in Letter_Nums:  
             password_vals.append(int(j))
+
+    #Key creation
+    #Code here doesn't really matter as long as the key is never allowed to be greater than the max_key. Everything else will produce the 
+    #same result when used for encryption and decryption
     for i in password_vals:
-        key += i
+        #print(password_vals[-1])
+        if password_vals[0] != 0 and password_vals[-1] != 0:
+            if i % password_vals[0] < 2 and i % password_vals[-1] < 2:
+                key += i
+        #key += i
+        if key > max_key:
+            key = 0
+    #print(key)
 
     return password_vals, key
 
@@ -38,6 +49,7 @@ def encrypt(message, password_values, key, Character_Reference_List):
                 for j in range(len(message)):
                     #print(i)
                     if j % i == 0:
+                        #print(key)
                         encrypted_message[j] = Character_Values.char_input_output(encrypted_message[j], key, Character_Reference_List)
                         # key += 1
                         # #print(key)
@@ -75,22 +87,33 @@ def decrypt(encrypted_message, password_values, key, Character_Reference_List):
 
 def main():
     Character_Reference_List = Character_Values.get_chars()
-    #print(encrypt("Pierce is cool", get_vals_from_password("Pierce"), 2, Character_Reference_List))
-    #print(get_vals_from_password("Pierce"))
-    #print(decrypt('5tpCoq tF ozAw', get_vals_from_password("Pierce"), 1, Character_Reference_List))
+    stop = False
+    while stop == False:
+        file_choice = input("Which file would you like to encrypt?")
+        if file_choice == '1' or file_choice == 'test_information1' or file_choice == 'test_information1.txt':
+            file_choice = 'test_information1.txt'
+            stop = True
+        elif file_choice == '2' or file_choice == 'test_information2' or file_choice == 'test_information2.txt':
+            file_choice = 'test_information2.txt'
+            stop = True
+        elif file_choice == '3' or file_choice == 'test_information3' or file_choice == 'test_information3.txt':
+            file_choice = 'test_information3.txt'
+            stop = True
+
     print()
-    Password_Vals, key = get_vals_from_password("Pierce")
-    encrypted_message = encrypt(message_list_generator("input.txt"), Password_Vals, key, Character_Reference_List)
+    Password_Vals, key = get_vals_from_password("Guardian927", int(len(Character_Reference_List)/2-1))
+    encrypted_message = encrypt(message_list_generator(file_choice), Password_Vals, key, Character_Reference_List)
 
     
-    Input_Password_Vals, input_key = get_vals_from_password(input("Password:"))
+    Input_Password_Vals, input_key = get_vals_from_password(input("Password:"), int(len(Character_Reference_List)/2-1))
     decrypted_message = decrypt(encrypted_message, Input_Password_Vals, input_key, Character_Reference_List)
+
+
     print()
     for i in decrypted_message:
         print(i, end='')
     print()
     print()
-    #print(decrypt(encrypt(message_list_generator("input.txt"), get_vals_from_password("Pierce"), 2, Character_Reference_List), get_vals_from_password("Pierce"), 2, Character_Reference_List))
 
 if __name__ == "__main__":
     main()
