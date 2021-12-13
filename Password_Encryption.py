@@ -28,8 +28,8 @@ def get_vals_from_password(Password, max_key):
 
 def encrypt(message, password_values, key, Character_Reference_List):
     encrypted_message = []
-    #Character_Reference_List_Length = len(Character_Reference_List)/2
-    #print(Character_Reference_List_Length)
+    
+    
     #Converts message string to encrypted_message list of characters
     for i in message:
         encrypted_message.append(i)
@@ -87,31 +87,30 @@ def decrypt(encrypted_message, password_values, key, Character_Reference_List):
 
 def main():
     Character_Reference_List = Character_Values.get_chars()
-    stop = False
-    while stop == False:
-        file_choice = input("Which file would you like to encrypt?")
-        if file_choice == '1' or file_choice == 'test_information1' or file_choice == 'test_information1.txt':
-            file_choice = 'test_information1.txt'
-            stop = True
-        elif file_choice == '2' or file_choice == 'test_information2' or file_choice == 'test_information2.txt':
-            file_choice = 'test_information2.txt'
-            stop = True
-        elif file_choice == '3' or file_choice == 'test_information3' or file_choice == 'test_information3.txt':
-            file_choice = 'test_information3.txt'
-            stop = True
+
+    operation_choice = ''
+    while operation_choice != 'encryption' and operation_choice != 'decryption' and operation_choice != 'Encryption' and operation_choice != 'Decryption' and operation_choice != 'E' and operation_choice != 'D' and operation_choice != 'e' and operation_choice != 'd':
+        operation_choice = input("Encryption or decryption:")
 
     print()
-    Password_Vals, key = get_vals_from_password("Guardian927", int(len(Character_Reference_List)/2-1))
-    encrypted_message = encrypt(message_list_generator(file_choice), Password_Vals, key, Character_Reference_List)
 
-    
-    Input_Password_Vals, input_key = get_vals_from_password(input("Password:"), int(len(Character_Reference_List)/2-1))
-    decrypted_message = decrypt(encrypted_message, Input_Password_Vals, input_key, Character_Reference_List)
+    if operation_choice == 'Encryption' or operation_choice == 'encryption' or operation_choice == 'E' or operation_choice == 'e':
+        Password_Vals, key = get_vals_from_password(input("Password(Used as encryption key, remember for decryption):"), int(len(Character_Reference_List)/2-1))
+        encrypted_message = encrypt(message_list_generator("input.txt"), Password_Vals, key, Character_Reference_List)
+        with open((input("Enter output file name(no file extension):")+'.txt'), 'w') as f:
+            for i in encrypted_message:
+                f.write(i)
 
+    elif operation_choice == 'Decryption' or operation_choice == 'decryption' or operation_choice =='D' or operation_choice == 'd':
+        Input_Password_Vals, input_key = get_vals_from_password(input("Password:"), int(len(Character_Reference_List)/2-1))
+        decrypted_message = decrypt(message_list_generator(input("Encrypted file name/path:")), Input_Password_Vals, input_key, Character_Reference_List)
+        with open('Password_Encryption_Output.txt', 'w') as f:
+            for i in decrypted_message:
+                f.write(i)
 
     print()
-    for i in decrypted_message:
-        print(i, end='')
+    # for i in decrypted_message:
+    #     print(i, end='')
     print()
     print()
 
