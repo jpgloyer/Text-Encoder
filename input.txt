@@ -1,2 +1,1 @@
-This is very much not a simple cipher anymore. As far as encryptions, it's pretty basic. However, were you to try to solve it by hand, 
-I'm not sure it would be realistically possible.
+This is merely a test to see if my code works. It has been a while since I used this. 
